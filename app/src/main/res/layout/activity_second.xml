@@ -4,11 +4,13 @@
     android:layout_height="match_parent"
     >
     <Button
+        android:id="@+id/btnClose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:text="X"
         android:textSize="24sp"
+        android:background="#fff"
         />
 
     <TextView
@@ -21,6 +23,7 @@
         />
 
     <TextView
+        android:id="@+id/tvBMI"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="0.00"
@@ -30,6 +33,7 @@
         />
 
     <TextView
+        android:id="@+id/tvDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="..."
@@ -39,6 +43,7 @@
         />
 
     <TextView
+        android:id="@+id/tvShowHW"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="..."
@@ -48,6 +53,7 @@
         />
 
     <Button
+        android:id="@+id/btnShear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button1"

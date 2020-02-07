@@ -2,6 +2,7 @@ package th.ac.su.bmime2
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -13,51 +14,43 @@ import kotlin.math.round
 
 class MainActivity : AppCompatActivity() {
 
+
+    var CHANGE_REQOUEST_CODE = 1000
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
         var btn_cal = findViewById<Button>(R.id.btnCal)
-
+        var tvShow = findViewById<TextView>(R.id.showDetail)
         var edtW = findViewById<EditText>(R.id.edtW)
         var edtH = findViewById<EditText>(R.id.edtH)
 
         btn_cal.setOnClickListener {
 
 
-            var w = edtW.text.toString().toDouble()
-            var h = edtH.text.toString().toDouble()
-            h = h/100
-
-            var bmi:Double = w/(h*h)
 
 
-            var result = "fat"
 
-            if(bmi>30)
-                result = "Obese"
-            else if (bmi> 25)
-                result = "Overweight"
-            else if (bmi> 18)
-                result = "Healthy"
-            else
-                result = "Underweight"
 
+
+            var intent = Intent (this@MainActivity,SecondActivity::class.java)
+
+
+            intent.putExtra("height",edtH.text.toString().toDouble())
+            intent.putExtra("weight",edtW.text.toString().toDouble())
+            startActivityForResult(intent,CHANGE_REQOUEST_CODE )
             hideKeyboard()
 
         }
     }
 
-    private fun hideKeyboard() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+//    private fun hideKeyboard() {
+//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//    }
 
-    fun Double.round(decimals: Int): Double {
-        var multiplier = 1.0
-        repeat(decimals) { multiplier *= 10 }
-        return round(this * multiplier) / multiplier
-    }
+
 
     fun Activity.hideKeyboard() {
         hideKeyboard(currentFocus ?: View(this))
