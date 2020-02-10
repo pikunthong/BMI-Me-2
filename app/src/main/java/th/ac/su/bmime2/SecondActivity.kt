@@ -13,6 +13,10 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
+
+
+
+
         var tvBMI = findViewById<TextView>(R.id.tvBMI)
         var tvDetail = findViewById<TextView>(R.id.tvDetail)
         var tvShoeHW = findViewById<TextView>(R.id.tvShowHW)
@@ -29,6 +33,9 @@ class SecondActivity : AppCompatActivity() {
         var bmi:Double = w/(h*h)
 
 
+        tvBMI.setText(bmi.round(2).toString())
+
+
         var result = "fat"
 
         if(bmi>30)
@@ -43,7 +50,7 @@ class SecondActivity : AppCompatActivity() {
 
 
 
-        tvBMI.setText(bmi.toString())
+
         tvDetail.setText(result)
         tvShoeHW.setText("( height: "+ h + "weight: " + w +")" )
 
@@ -58,18 +65,25 @@ class SecondActivity : AppCompatActivity() {
 
 
         btnShear.setOnClickListener {
+
+            val value = "YOUR BMI \n"+bmi.round(2)+"\n"+result+"\n"+"( height: "+ h + "weight: " + w +")"
+
             var intent = Intent();
             intent.action = Intent.ACTION_SEND
-            intent.putExtra(Intent.EXTRA_TEXT,result)
+            intent.putExtra(Intent.EXTRA_TEXT,value)
             intent.type = "text/plan"
 
             startActivity(Intent.createChooser(intent,"share info"))
         }
     }
 
-    fun Double.round(decimals: Int): Double {
-        var multiplier = 1.0
-        repeat(decimals) { multiplier *= 10 }
-        return kotlin.math.round(this * multiplier) / multiplier
-    }
+
+
+
+}
+
+fun Double.round(decimals: Int): Double {
+    var multiplier = 1.0
+    repeat(decimals) { multiplier *= 10 }
+    return kotlin.math.round(this * multiplier) / multiplier
 }
